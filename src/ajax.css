@@ -1,0 +1,24 @@
+body {
+    align-content: center;
+}
+
+table {
+    width: 700px;
+}
+
+caption {
+    padding: 5px;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+th {
+    font-size: 14px;
+    text-align: left;
+    padding: 5px;
+}
+
+table, th {
+    border: 0.5px solid black;
+    border-collapse: collapse;
+}

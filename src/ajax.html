@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewpoint" content="width=device-width, intitial-scale=1.0">
-    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" type="text/css" href="ajax.css">
 
-    <title>Visitor form</title>
+    <title> Visitor form </title>
 </head>
 <body>
 
-    <h1 class="heading">Visitor's form</h1>
+    <h1 class="heading"> Visitor's form </h1>
 
     <form action="new_visit" method="POST">
 
@@ -25,9 +25,35 @@
         <br><br>
         <input type="text" placeholder="Comments">
         <br><br>
-        <button class="hovering">Submit</button>
+        <button class="hovering"> Submit </button>
 
     </form>
+
+    <br><br>
+
+    <table>
+
+        <caption>Visitor table</caption>
+
+        <tr>
+
+            <th> Id </th>
+            <th> Name </th>
+            <th> Age </th>
+            <th> Date </th>
+            <th> Time </th>
+            <th> Assistant </th>
+            <th> Comments </th>
+
+        </tr>
+
+    </table>
+
+    <br><br>
+
+    <button> Delete </button>
+
+    <script src = "server.js"></script>
 
 </body>
     
