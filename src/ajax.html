@@ -11,29 +11,29 @@
 
     <h1 class="heading"> Visitor's form </h1>
 
-    <form action="new_visit" method="POST">
+    <form action="new_visit" method="POST" id="forms">
 
-        <input type="text" name="visitor_name" placeholder="Visitor name">
+        <input type="text" name="visitor_name" placeholder="Visitor name" id="body">
         <br><br>
-        <input type="text" name="assistant" placeholder="Assistant">
+        <input type="text" name="assistant" placeholder="Assistant" id="body">
         <br><br>
-        <input type="text" name="visitors_age" placeholder="Visitor's age">
+        <input type="text" name="visitors_age" placeholder="Visitor's age" id="body">
         <br><br>
-        <input type="text" name="date_of_visit" placeholder="Date of visit">
+        <input type="text" name="date_of_visit" placeholder="Date of visit" id="body">
         <br><br>
-        <input type="text" name="time_of_visit" placeholder="Time of visit">
+        <input type="text" name="time_of_visit" placeholder="Time of visit" id="body">
         <br><br>
-        <input type="text" placeholder="Comments">
+        <input type="text" placeholder="Comments" id="body">
         <br><br>
-        <button class="hovering"> Submit </button>
+        <input type="submit" value="Submit">
 
     </form>
 
     <br><br>
 
-    <table>
+    <table id="visitors" width = 700px border ="1">
 
-        <caption>Visitor table</caption>
+        <h1>Visitor table</h1>
 
         <tr>
 
@@ -53,7 +53,33 @@
 
     <button> Delete </button>
 
-    <script src = "server.js"></script>
+    <script>
+        //add event listener
+        document.getElementById("form").addEventListener("submit", addNewVisitor);
+
+        const addNewVisitor = async () => {
+
+            let forms = document.getElementById("forms");
+            let body = document.getElementById("body");
+
+            try{
+
+                // submit button
+                let visit = await fetch ("/", {
+                method:"POST",
+                headers:{
+                    "Content-type":"application/json"
+                },
+
+                // change a json file to a string
+                body: JSON.stringify({forms: forms, body:body})
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    } 
+
+    </script>
 
 </body>
     
