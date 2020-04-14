@@ -1,10 +1,14 @@
 const express = require('express');
 const path = require('path');
+const {addNewVisitor, viewVisitors, deleteVisitor} = require('./functions');
 
 // set up server
 const app = express();
 
 app.use(express.json());
+app.use(express.static('public'));
+
+app.use('/single-page-app', express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + "/ajax.html"));
@@ -24,22 +28,13 @@ app.post('/single-page-app', (req, res) => {
   
 });
 
-// Save visitor into database
-const addNewVisitor = async(name, nameOfAssistant, age, date, time, comments) => {
+// viewVisitor
+app.get('/view', (req, res) => {
+    return viewVisitors();
+})
 
-    try{
-
-        query = await pool.query(
-        "INSERT INTO Visitors (visitor_name, assistant, visitors_age, date_of_visit, time_of_visit, comments) values ($1, $2, $3, $4, $5, $6)", 
-        [name, nameOfAssistant, age, date, time, comments]);
-
-        return query.rows
-
-    } catch(err) {
-        console.log(err)
-
-    }
-};
+// delete visitor
+app.delete('/visitors')
 
 const server = app.listen(3009, (req, res) => {
     console.log("server listening on port 3009")

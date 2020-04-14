@@ -43,3 +43,9 @@ const deleteVisitor = async () => {
   
     }
   };
+
+  module.exports = {
+    addNewVisitor,
+    viewVisitors,
+    deleteVisitor
+  }

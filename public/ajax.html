@@ -35,50 +35,65 @@
 
         <h1>Visitor table</h1>
 
-        <tr>
-
-            <th> Id </th>
-            <th> Name </th>
-            <th> Age </th>
-            <th> Date </th>
-            <th> Time </th>
-            <th> Assistant </th>
-            <th> Comments </th>
-
-        </tr>
+        <thead>
+            <tr>
+                <th> Id </th>
+                <th> Name </th>
+                <th> Age </th>
+                <th> Date </th>
+                <th> Time </th>
+                <th> Assistant </th>
+                <th> Comments </th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td>1</td>
+            <td>Sekgomotso</td>
+            <td>24</td>
+            <td>24/09/2020</td>
+            <td>10:00</td>
+            <td>Neo</td>
+            <td>Hi</td>
+            <td><button>Delete</button></td>
+        </tbody>
 
     </table>
 
-    <br><br>
-
-    <button> Delete </button>
-
     <script>
+
         //add event listener
-        document.getElementById("form").addEventListener("submit", addNewVisitor);
+        document.getElementById("forms").addEventListener("submit", addNewVisitor);
+        document.getElementById("forms").addEventListener("submit", viewVisitors);
 
-        const addNewVisitor = async () => {
+        const addNewVisitor = async (event) => {
 
-            let forms = document.getElementById("forms");
-            let body = document.getElementById("body");
+            event.preventDefault();
+
+            let forms = document.getElementById("forms").value;
+            let body = document.getElementById("body").value;
 
             try{
 
                 // submit button
-                let visit = await fetch ("/", {
+                let data = await fetch ('http://localhost:3009/single-page-app', {
                 method:"POST",
                 headers:{
                     "Content-type":"application/json"
                 },
+                mode:'cors',
 
                 // change a json file to a string
                 body: JSON.stringify({forms: forms, body:body})
             })
-        } catch (err) {
-            console.log(err)
+            
+            } catch (err) {
+                console.log(err)
+            }
         }
-    } 
-
+        
+        // populate table
+        
     </script>
 
 </body>
