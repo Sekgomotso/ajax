@@ -11,7 +11,7 @@
 
     <h1 class="heading"> Visitor's form </h1>
 
-    <form action="new_visit" method="POST" id="forms">
+    <form action="single-page-app" method="POST" id="forms">
 
         <input type="text" name="visitor_name" placeholder="Visitor name" id="body">
         <br><br>
@@ -47,7 +47,8 @@
                 <th>&nbsp;</th>
             </tr>
         </thead>
-        <tbody>
+
+        <tbody id = "content">
             <td>1</td>
             <td>Sekgomotso</td>
             <td>24</td>
@@ -93,7 +94,38 @@
         }
         
         // populate table
-        
+        let array = [];
+
+        fetch('http://localhost:3009/single-page-app', {
+            method: 'GET',
+            mode:'cors',
+            headers:{
+                "Content-type":"application/json"
+            },
+
+            success: function(response) {
+                array = response.data;
+                viewVisitors(array);
+            }
+        })
+
+        function viewVisitors(data) {
+            let table = document.getElementById('content');
+
+            for (i = 0; i < data.length; i++) {
+                let insert = ` <tr>
+                                     <td>${data[i].visitor_id}</td>
+                                     <td>${data[i].visitor_name}</td>
+                                     <td>${data[i].visitor_age}</td>
+                                     <td>${data[i].date_of_visit}</td>
+                                     <td>${data[i].time_of_visit}</td>
+                                     <td>${data[i].assistant}</td>
+                                     <td>${data[i].comment}</td>
+                                </tr>`
+                                table.innerHTML += insert
+            }
+        }
+          
     </script>
 
 </body>

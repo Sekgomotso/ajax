@@ -6,10 +6,11 @@ const {addNewVisitor, viewVisitors, deleteVisitor} = require('./functions');
 const app = express();
 
 app.use(express.json());
-app.use(express.static('public'));
+// // app.use(express.static('public'));
 
 app.use('/single-page-app', express.static(path.join(__dirname, 'public')))
 
+// static web page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + "/ajax.html"));
 });
@@ -33,9 +34,12 @@ app.get('/view', (req, res) => {
     return viewVisitors();
 })
 
-// delete visitor
-app.delete('/visitors')
+// // delete visitor
+// app.delete('/deleteVisitor:id', (req, res) => {
+//     let id = req.params.id
+// })
 
+// port
 const server = app.listen(3009, (req, res) => {
     console.log("server listening on port 3009")
 })
