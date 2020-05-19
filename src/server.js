@@ -6,7 +6,7 @@ const {addNewVisitor, viewVisitors, deleteVisitor} = require('./functions');
 const app = express();
 
 app.use(express.json());
-// // app.use(express.static('public'));
+app.use(express.static('public'));
 
 app.use('/single-page-app', express.static(path.join(__dirname, 'public')))
 
@@ -34,10 +34,15 @@ app.get('/view', (req, res) => {
     return viewVisitors();
 })
 
-// // delete visitor
-// app.delete('/deleteVisitor:id', (req, res) => {
-//     let id = req.params.id
-// })
+// delete visitor
+app.delete('/deleteVisitor:id', (req, res) => {
+    let id = req.params.id
+
+    let visitor = await deleteVisitor(id);
+
+    res.send(visitor);
+
+})
 
 // port
 const server = app.listen(3009, (req, res) => {
