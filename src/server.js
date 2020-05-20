@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require('path');
+const cors = required ('cors');
 const {addNewVisitor, viewVisitors, deleteVisitor} = require('./functions');
 
 // set up server
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 app.use(express.static('public'));
 
 app.use('/single-page-app', express.static(path.join(__dirname, 'public')))
