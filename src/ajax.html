@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewpoint" content="width=device-width, intitial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="ajax.css">
+    <!-- <link rel="stylesheet" type="text/css" href="ajax.css"> -->
 
     <title> Visitor form </title>
 </head>
@@ -67,9 +67,9 @@
 
     <script>
 
-        //add event listener
-        document.getElementById("forms").addEventListener("submit", addNewVisitor);
-        document.getElementById("forms").addEventListener("submit", viewVisitors);
+        // //add event listener
+        // document.getElementById("forms").addEventListener("submit", addNewVisitor);
+        // document.getElementById("forms").addEventListener("submit", viewVisitors);
 
         const addNewVisitor = async (event) => {
 
@@ -134,7 +134,7 @@
         const deleteVisitor = () => {
             if(document.getElementById("body").innerHTML){
                 document.getElementById("body").innerHTML ="";
-                console.log("user removed from webpage...")
+                console.log("removed visitor from table...")
             }
         };
 
