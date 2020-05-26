@@ -27,7 +27,7 @@
         <br><br>
         <input type="text" placeholder="Comments" id="body">
         <br><br>
-        <input onclick="addNewVisitor()" type="submit" value="Submit">
+        <input onclick="addNewVisitor(); viewVisitors()" type="submit" value="Submit">
 
     </form>
 
@@ -52,7 +52,7 @@
             </tr>
         </thead>
 
-        <tbody id = "content" onclick="viewVisitor()">
+        <tbody id = "content" >
             <td>1</td>
             <td>Sekgomotso</td>
             <td>24</td>
@@ -74,6 +74,8 @@
         const addNewVisitor = async (event) => {
 
             event.preventDefault();
+
+            document.getElementById("forms").addEventListener("submit", addNewVisitor);
 
             let forms = document.getElementById("forms").value;
             let body = document.getElementById("body").value;
@@ -114,6 +116,10 @@
         })
 
         function viewVisitors(data) {
+
+            // event listener
+            document.getElementById("forms").addEventListener("submit", viewVisitors);
+
             let table = document.getElementById('content');
 
             for (i = 0; i < data.length; i++) {
