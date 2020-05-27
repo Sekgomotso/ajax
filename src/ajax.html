@@ -27,7 +27,7 @@
         <br><br>
         <input type="text" placeholder="Comments" id="body">
         <br><br>
-        <input onclick="addNewVisitor(); viewVisitors()" type="submit" value="Submit">
+        <button type="submit" onclick="addNewVisitor(); viewVisitors()"> Submit </button>
 
     </form>
 
@@ -41,7 +41,7 @@
 
         <thead>
             <tr>
-                <th id=> Id </th>
+                <th> Id </th>
                 <th> Name </th>
                 <th> Age </th>
                 <th> Date </th>
@@ -53,29 +53,17 @@
         </thead>
 
         <tbody id = "content" >
-            <td>1</td>
-            <td>Sekgomotso</td>
-            <td>24</td>
-            <td>24/09/2020</td>
-            <td>10:00</td>
-            <td>Neo</td>
-            <td>Hi</td>
-            <td><button onclick="deleteVisitor()">Delete</button></td>
+    
         </tbody>
 
     </table>
 
     <script>
 
-        // //add event listener
-        // document.getElementById("forms").addEventListener("submit", addNewVisitor);
-        // document.getElementById("forms").addEventListener("submit", viewVisitors);
-
+        // add new visitor
         const addNewVisitor = async (event) => {
 
             event.preventDefault();
-
-            document.getElementById("forms").addEventListener("submit", addNewVisitor);
 
             let forms = document.getElementById("forms").value;
             let body = document.getElementById("body").value;
@@ -115,10 +103,8 @@
             }
         })
 
-        function viewVisitors(data) {
-
-            // event listener
-            document.getElementById("forms").addEventListener("submit", viewVisitors);
+        // table data
+        const viewVisitors = (data) => {
 
             let table = document.getElementById('content');
 
@@ -136,10 +122,19 @@
             }
         };
 
+        // create delete button
+        const button = (id) => {
+            let td = document.createElement('td');
+
+            td.innerHTML = `<button onclick="deleteVisitor(${id})">Delete</button>`;
+
+            return td;
+        }
+
         // delete visitor 
-        const deleteVisitor = () => {
-            if(document.getElementById("body").innerHTML){
-                document.getElementById("body").innerHTML ="";
+        const deleteVisitor = async (id) => {
+            if(document.getElementById("content").innerHTML){
+                document.getElementById("content").innerHTML ="";
                 console.log("removed visitor from table...")
             }
         };
